@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+"""Size me please"""
 
 def matrix_shape(matrix):
+    """calculates the shape of a matrix"""
     list1 = []
     if matrix:
         while (isinstance(matrix, list) == True):
