@@ -2,21 +2,11 @@
 
 def matrix_shape(matrix):
     list1 = []
-    
-    try:
-        x = len(matrix)
-        list1.append(x)
-    except:
-        pass
-    try:
-        y = len(matrix[0])
-        list1.append(y)
-    except:
-        pass
-    try:
-        z = len(matrix[0][0])
-        list1.append(z)
-    except:
-        pass
+    if matrix:
+        while (isinstance(matrix, list) == True):
+            # check len of a dimension
+            list1.append(len(matrix))
+            # change to a next dimension on the loop
+            matrix = matrix[0]
 
     return list1
