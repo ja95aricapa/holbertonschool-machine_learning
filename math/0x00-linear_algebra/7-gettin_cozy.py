@@ -17,4 +17,3 @@ def cat_matrices2D(mat1, mat2, axis=0):
         for i in range(len(m1)):
             result.append(m1[i] + m2[i])
         return result
-        
