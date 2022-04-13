@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
 """Size me please"""
 
+
 def matrix_shape(matrix):
     """calculates the shape of a matrix"""
-    list1 = []
-    if matrix:
-        while (isinstance(matrix, list) == True):
-            # check len of a dimension
-            list1.append(len(matrix))
-            # change to a next dimension on the loop
-            matrix = matrix[0]
-
-    return list1
+    if not type(matrix) == list:
+        return []
+    return [len(matrix)] + matrix_shape(matrix[0])
