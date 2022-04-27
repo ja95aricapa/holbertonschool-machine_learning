@@ -37,17 +37,12 @@ class Exponential:
 
     # task 4
     def pdf(self, x):
-        """Calculates the PDF for a given time period"""
-
-        # If k is out of range
+        """Calculates the value of the
+        PDF for a given time period"""
         if x < 0:
             return 0
-        # f k is not an integer
-        if type(x) != int:
-            x = int(x)
-        # calculate
-        result = self.lambtha * e**(-self.lambtha * x)
-        return result
+
+        return self.lambtha * e**(-self.lambtha * x)
 
     # task 5
     def cdf(self, x):
