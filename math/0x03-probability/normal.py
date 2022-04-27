@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a class Poisson that represents a poisson distribution"""
+"""Normal distribution"""
 
 
 # constants
@@ -7,63 +7,66 @@ pi = 3.1415926536
 e = 2.7182818285
 
 
-# calculate fatorials
-def factorial(n):
-    """Finds the factorial of a given number"""
-    return 1 if (n == 1 or n == 0) else n * factorial(n - 1)
+# constants
+def erf(x):
+    """error function encountered in
+    integrating the normal distribution"""
+    a = (2 / (pi**(1/2)))
+    b = (x - ((x**3)/3) + ((x**5)/10) - ((x**7)/42) + ((x**9)/216))
+    return a * b
 
 
-class Poisson:
-    """Represents a poisson distribution"""
+# task 6
+class Normal:
+    """Represents an normal distribution"""
 
-    # task 0
-    def __init__(self, data=None, lambtha=1.):
-        """Initialize Poisson"""
+    def __init__(self, data=None, mean=0., stddev=1.):
+        """Initialize Normal"""
+        self.data = data
 
-        # if data is not given
+        # If data is not given
         if data is None:
-            if lambtha <= 0:
-                raise ValueError('lambtha must be a positive value')
-            # Sets the instance attribute lambtha
-            self.lambtha = float(lambtha)
-        # if data is given
+            if stddev <= 0:
+                raise ValueError('stddev must be a positive value')
+            self.stddev = float(stddev)
+            self.mean = float(mean)
+
+        # If data is given
         else:
-            if not isinstance(data, list):
+            if type(data) != list:
                 raise TypeError('data must be a list')
             if len(data) < 2:
                 raise ValueError('data must contain multiple values')
-            # Sets the instance attribute lambtha
-            self.lambtha = sum(data) / len(data)
+            # calculate mean and stddev
+            self.mean = sum(data) / len(data)
 
-    # task 1
-    def pmf(self, k):
-        """Calculates the value of the PMF
-        for a given number of successes (k)"""
+            s_dif = []
+            for d in data:
+                s_dif.append((d - self.mean)**2)
 
-        # If k is out of range
-        if k < 0:
-            return 0
-        # f k is not an integer
-        if type(k) != int:
-            k = int(k)
-        # calculate
-        result = (e**(-self.lambtha) * self.lambtha**k) / factorial(k)
+            self.stddev = (sum(s_dif) / len(s_dif))**(1/2)
+
+    # task 7
+    def z_score(self, x):
+        """Calculates the z-score of a given x-value"""
+        result = (x - self.mean) / self.stddev
         return result
 
-    # task 2
-    def cdf(self, k):
-        """Calculates the value of the CDF
-        for a given number of successes (k)"""
+    def x_value(self, z):
+        """Calculates the x-value of a given z-score"""
+        result = self.stddev * z + self.mean
+        return result
 
-        # if k is out of range
-        if k < 0:
-            return 0
-        # if k is not an integer
-        if type(k) != int:
-            k = int(k)
-        # calculate
-        p = 0
-        for i in range(k + 1):
-            p += ((self.lambtha**i) / factorial(i))
-        result = e**(-self.lambtha) * p
+    # task 8
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given x-value"""
+        aux = ((x - self.mean) / self.stddev)**2
+        result = (1 / (self.stddev * (2 * pi)**(1/2))) * e**((-1/2) * aux)
+        return result
+
+    # task 9
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value"""
+        aux = (x - self.mean)/(self.stddev * (2**(1/2)))
+        result = (1/2) * (1 + erf(aux))
         return result
