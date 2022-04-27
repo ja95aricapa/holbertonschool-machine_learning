@@ -51,14 +51,9 @@ class Exponential:
 
     # task 5
     def cdf(self, x):
-        """Calculates the CDF for a given time period"""
-
-        # if k is out of range
+        """Calculates the value of the
+        CDF for a given time period"""
         if x < 0:
             return 0
-        # if k is not an integer
-        if type(x) != int:
-            x = int(x)
-        # calculate
-        result = 1 - e**(-self.lambtha * x)
-        return result
+
+        return 1 - e**(-self.lambtha * x)
