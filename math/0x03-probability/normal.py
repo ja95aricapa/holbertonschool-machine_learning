@@ -7,7 +7,7 @@ pi = 3.1415926536
 e = 2.7182818285
 
 
-# constants
+# erf calculation
 def erf(x):
     """error function encountered in
     integrating the normal distribution"""

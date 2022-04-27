@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 """Binomial distribution"""
 
-
+# constants
 pi = 3.1415926536
 e = 2.7182818285
 
 
+# utils functions
 def factorial(n):
     """Finds the factorial of a given number"""
     return 1 if (n == 1 or n == 0) else n * factorial(n - 1)
 
 
+# task 10
 class Binomial:
     """Represents a binomial distribution"""
 
     def __init__(self, data=None, n=1, p=0.5):
         """Initialize Binomial"""
 
+        # If data is not given
         if data is None:
             if n <= 0:
                 raise ValueError('n must be a positive value')
@@ -25,11 +28,13 @@ class Binomial:
             self.n = int(n)
             self.p = float(p)
 
+        # If data is given
         else:
             if not isinstance(data, list):
                 raise TypeError('data must be a list')
             if len(data) < 2:
                 raise ValueError('data must contain multiple values')
+            # calculate n and p
             mean = sum(data) / len(data)
             s_dif = []
             for d in data:
@@ -41,6 +46,7 @@ class Binomial:
             self.n = round(mean / p)
             self.p = mean / self.n
 
+    # task 11
     def pmf(self, k):
         """Calculates the value of the PMF
         for a given number of successes"""
@@ -48,10 +54,11 @@ class Binomial:
             k = int(k)
         if k < 0:
             return 0
-
         a = factorial(self.n) / (factorial(k) * factorial(self.n - k))
-        return a * self.p**k * (1 - self.p)**(self.n - k)
+        result = a * self.p**k * (1 - self.p)**(self.n - k)
+        return result
 
+    # task 12
     def cdf(self, k):
         """Calculates the value of the CDF
         for a given number of successes"""
@@ -59,10 +66,7 @@ class Binomial:
             k = int(k)
         if k < 0:
             return 0
-
         p = 0
-
         for i in range(k + 1):
             p += self.pmf(i)
-
         return p
