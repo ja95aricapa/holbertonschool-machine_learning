@@ -2,6 +2,7 @@
 """Neuron"""
 import numpy as np
 
+
 # task 10
 class Neuron:
     """Defines a single neuron performing binary classification"""
