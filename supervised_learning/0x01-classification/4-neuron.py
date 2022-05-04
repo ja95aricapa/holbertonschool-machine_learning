@@ -112,11 +112,11 @@ class Neuron:
         # labels for each example
         # The label values should be 1 if the output
         # of the network is >= 0.5 and 0 otherwise
-        act = self.forward_prop(X)
+        pre = self.forward_prop(X)
         # 2) calculate the cost of the network
         # about do that prediction (activity)
-        result_cost = self.cost(Y, act)
+        result_cost = self.cost(Y, pre)
         # 3) assure the format expected of the output
-        act_round = np.round(act)
-        result_pred = act_round.astype(int)
-        pass result_pred, result_cost
+        pre_round = np.round(pre)
+        result_pre = pre_round.astype(int)
+        return result_pre, result_cost
