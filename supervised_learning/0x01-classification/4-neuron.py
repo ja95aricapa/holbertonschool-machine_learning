@@ -96,3 +96,27 @@ class Neuron:
         # -(1/m) * np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
         #
         return result
+
+    def evaluate(self, X, Y):
+        """Evaluates the neuron’s predictions"""
+        # now, execute the predictions between n layers
+        # using all the previous methods:
+        #
+        # X is a mtx that contains the input data
+        # Y is a mtx that contains the correct labels for the input data
+        #
+        # so... with all the necessary data, we can begin:
+        # 1) calculate the prediction (A) from the left layer
+        # to the right layer
+        # the output is a mtx containing the predicted
+        # labels for each example
+        # The label values should be 1 if the output
+        # of the network is >= 0.5 and 0 otherwise
+        act = self.forward_prop(X)
+        # 2) calculate the cost of the network
+        # about do that prediction (activity)
+        result_cost = self.cost(Y, act)
+        # 3) assure the format expected of the output
+        act_round = np.round(act)
+        result_pred = act_round.astype(int)
+        pass result_pred, result_cost
