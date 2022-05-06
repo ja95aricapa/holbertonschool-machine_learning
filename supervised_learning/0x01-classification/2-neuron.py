@@ -43,19 +43,8 @@ class Neuron:
         return self.__A
 
     def forward_prop(self, X):
-        """calculates the forward propagation of the neuron"""
-        # Forward Propagation is the way to move from the Input layer (left)
-        # to the Output layer (right) in the neural network
-        #
-        # multiply the matrix input data (left layer) with the weights vector
-        # (each node connection with the right) for the neuron
-        #
-        z = np.matmul(self.__W, X)
-        # z is the activity of the next layer
-        # one row for each example and one column for each hidden unit
-        #
-        # add the bias for the neuron to the activity
-        z += self.__b
-        # apply the activation function
+        """Calculates the forward propagation of the neuron"""
+        z = np.matmul(self.__W, X) + self.__b
         self.__A = sigmoid(z)
         return self.__A
+
