@@ -61,41 +61,10 @@ class Neuron:
         return self.__A
 
     def cost(self, Y, A):
-        """
-        Calculates the cost of the model
-        using logistic regression
-        """
-        # the cost function measures how well our
-        # parameters w and b are doing on the training data set
-        # this use a regrex formula, because predict if
-        # the estimate is good or not. for this case, we use
-        # the logistic regrex formula (because we predict how
-        # good was the output after use a sigmoid function)
-        #
-        # m denotes the total number of training examples
+        """Calculates the cost of the model
+        using logistic regression"""
         m = (Y.shape[1])
-        # for a logistic regrex, the loss function definition:
-        #
-        # * Y is a mtx that contains the correct labels
-        # for the input data (be one or the other class)
-        # * A is a mtx containing the activated output
-        # of the neuron for each example
-        # * log(A) or Log(1-A) is the probability of be one o other label
-        # ** in this case: A -> label:1 and (1-A) -> label:0
-        #
-        # for a single training example is:
-        una = Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)
-        # now, for m number of training examples sum each result
-        suma = np.sum(una)
-        # finally, set the cost for every each example
-        result = -(1 / m) * suma
-        # the suggested formula, the cost func is the derivative of
-        # the activated func (in ths case, the log regrex because
-        # using a sigmoid), and that cost applied for a lot of examples
-        # for this task is:
-        # -(1/m) * np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
-        #
-        return result
+        return -(1 / m) * np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
 
     def evaluate(self, X, Y):
         """Evaluates the neuron’s predictions"""
