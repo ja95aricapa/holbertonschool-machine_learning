@@ -1,28 +1,24 @@
 #!/usr/bin/env python3
-"""Neuron"""
+"""Neuron Forward Propagation"""
 import numpy as np
 
 
-# utils functions
 def sigmoid(z):
-    """apply sigmoid activation method"""
-    result = 1 / (1 + np.exp(-z))
-    return result
+    """Calculate the sigmoid function"""
+    return 1/(1+np.exp(-z))
 
 
-# task 10
 class Neuron:
-    """Defines a single neuron performing binary classification"""
+    """defines a single neuron performing
+    binary classification"""
 
     def __init__(self, nx):
-        """Class constructor"""
-
-        # check if nx is a valid input features to the neuron
+        """class constructor"""
         if type(nx) != int:
             raise TypeError('nx must be an integer')
         if nx < 1:
             raise ValueError('nx must be a positive integer')
-        # set values
+
         self.__W = np.random.randn(1, nx)
         self.__b = 0
         self.__A = 0
@@ -47,4 +43,3 @@ class Neuron:
         z = np.matmul(self.__W, X) + self.__b
         self.__A = sigmoid(z)
         return self.__A
-
