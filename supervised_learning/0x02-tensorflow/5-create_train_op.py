@@ -1,14 +1,17 @@
+
 #!/usr/bin/env python3
-"""
-Train_Op
-"""
+"""Fila that contains the function create_train_op"""
 import tensorflow.compat.v1 as tf
 
 
 def create_train_op(loss, alpha):
     """
-    creates the training operation for the network
+    Function that creates the training operation for the network
+    Args:
+    loss: is the loss of the network’s prediction
+    alpha: is the learning rate
+    Returns: an operation that trains the network using gradient descent
     """
-    optimizer = tf.train.GradientDescentOptimizer(alpha)
-    train = optimizer.minimize(loss)
-    return train
+    gradient_decent = tf.train. GradientDescentOptimizer(alpha).minimize(loss)
+
+    return gradient_decent
