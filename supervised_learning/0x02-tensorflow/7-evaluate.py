@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Evaluate
-"""
+"""Defines `evaluate`."""
 import tensorflow.compat.v1 as tf
 
 
