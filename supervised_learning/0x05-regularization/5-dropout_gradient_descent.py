@@ -1,4 +1,3 @@
-
 # !/usr/bin/env python3
 """File that contains the function dropout_gradient_descent"""
 import numpy as np
