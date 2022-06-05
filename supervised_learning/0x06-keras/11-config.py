@@ -1,4 +1,3 @@
-
 # !/usr/bin/env python3
 """File that contains the functions save_config and
 load_config"""
